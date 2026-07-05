@@ -58,3 +58,11 @@ const displayTasks = () => {
 
 displayTasks();
 
+
+
+
+const deleteTask = (index) => {
+    tasks.splice(index, 1);
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+    displayTasks();
+}
