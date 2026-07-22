@@ -9,6 +9,7 @@ if (localStorage.getItem('tasks') != null) {
     tasks = JSON.parse(localStorage.getItem('tasks'));
 }
 
+
 taskForm.onsubmit = (event) => {
     event.preventDefault();
     //1- after submit we want to get the data from the form and store it in an object
@@ -31,18 +32,48 @@ taskForm.onsubmit = (event) => {
 
 //we want to display the data in the table::
 
+
+
+
+
+const deleteTask = (index) => {
+    tasks.splice(index, 1);
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+    displayTasks();
+}
+
+
+const getPriorityClass = (priority) => {
+    if (priority.toLowerCase() === 'high') {
+        return 'bg-red-500';
+    } else if (priority.toLowerCase() === 'medium') {
+        return 'bg-yellow-500';
+    } else {
+        return 'bg-green-500';
+    }
+
+    return `bg-gray-500`;
+
+}
+
+
 const displayTasks = () => {
     const result = tasks.map((task, index) => {
         return `
                  <tr>
                      <td class="px-6 py-4 whitespace-nowrap">${task.title}</td>
                      <td class="px-6 py-4 whitespace-nowrap">${task.description}</td>
-                     <td class="px-6 py-4 whitespace-nowrap">${task.priority}</td>
-                     <td class="px-6 py-4 whitespace-nowrap">${task.dueDate}</td>
-                     <td class="px-6 py-4 whitespace-nowrap">${task.createdAt}</td>
                      <td class="px-6 py-4 whitespace-nowrap">
-                   <button
-                         class="px-4 py-2 font-medium text-white bg-blue-600 rounded-md hover:bg-blue-500 focus:outline-none focus:shadow-outline-blue active:bg-blue-600 transition duration-150 ease-in-out">Details</button>
+                         <span class="px-2 py-1 text-xs font-medium rounded-full ${getPriorityClass(task.priority)}">
+                             ${task.priority}
+                         </span>
+                     </td>
+                   
+                     <td class="px-6 py-4 whitespace-nowrap">
+                   <a href='details.html?id=${index}'
+                         class="px-4 py-2 font-medium text-white bg-blue-600 rounded-md hover:bg-blue-500 focus:outline-none focus:shadow-outline-blue active:bg-blue-600 transition duration-150 ease-in-out   " onclick="displayTaskDetails(${index})">
+                         Details
+                     </a>
                      <button
                          class="ml-2 px-4 py-2 font-medium text-white bg-red-600 rounded-md hover:bg-red-500 focus:outline-none focus:shadow-outline-red active:bg-red-600 transition duration-150 ease-in-out"
                           onclick="deleteTask(${index})">
@@ -55,14 +86,5 @@ const displayTasks = () => {
     //result is an array of strings, we want to join them together and display them in the table body:
     document.querySelector('.data').innerHTML = result.join('');
 }
-
 displayTasks();
 
-
-
-
-const deleteTask = (index) => {
-    tasks.splice(index, 1);
-    localStorage.setItem('tasks', JSON.stringify(tasks));
-    displayTasks();
-}

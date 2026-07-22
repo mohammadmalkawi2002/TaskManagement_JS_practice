@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>details</title>
+    <link rel="stylesheet" href="./dist/output.css">
+</head>
+
+<body class="bg-slate-100 min-h-screen flex items-center justify-center p-6">
+
+    <div class=" container w-full max-w-2xl">
+
+        <!-- Back Button -->
+        <a href="index.html"
+            class=" px-4 py-2 font-medium text-white bg-blue-600 rounded-md hover:bg-blue-500 focus:outline-none focus:shadow-outline-blue active:bg-blue-600 transition duration-150 ease-in-out   "
+           >
+            Back
+        </a>
+
+        <!-- Task Details Card -->
+        <div class="mt-4 rounded-2xl bg-white shadow-lg border border-slate-200 p-8">
+
+            <div>
+                <h2 class="text-sm font-bold text-black">Title:</h2>
+                <p class="title"></p>
+            </div>
+            <!-- description -->
+            <div class="flex items-start justify-between gap-4">
+
+
+                <div>
+                    <p class=" text-sm font-bold text-black">
+                        Description:
+                    </p>
+
+                    <p class=" description mt-2 text-slate-600 leading-relaxed">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora dolore veniam corrupti quia.
+                        Eligendi facilis placeat eius et commodi porro? Debitis, suscipit vel! Voluptate mollitia cum
+                        explicabo, enim autem omnis.
+                    </p>
+                </div>
+
+                <!-- Priority Badge -->
+                <span class="priority mt-3 mr-2 px-2 py-1 text-xs font-medium rounded-full bg-red-500">
+                    
+                </span>
+
+
+            </div>
+
+            <!-- Divider -->
+            <div class="my-8 border-t border-slate-200"></div>
+
+            <!-- Dates -->
+            <div class="grid gap-6 sm:grid-cols-2">
+
+                <!-- Created At -->
+                <div class=" Created rounded-xl bg-slate-50 p-5">
+                    <p class="text-sm font-bold text-black">
+                        Created At:
+                    </p>
+
+                    <p class=" Created mt-2 text-lg font-semibold text-slate-800">
+                        
+                    </p>
+                </div>
+
+                <!-- Due Date -->
+                <div class="rounded-xl bg-slate-50 p-5">
+                    <p class="  text-sm font-bold text-black">
+                        Due Date:
+                    </p>
+
+                    <p class=" Due mt-2 text-lg font-semibold text-slate-800">
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+<script src="./details.js"></script>
+</body>
+
+</html>
