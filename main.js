@@ -23,6 +23,15 @@ taskForm.onsubmit = (event) => {
     //2-add the task to the tasks array and store it in local storage
     tasks.push(task);
     localStorage.setItem('tasks', JSON.stringify(tasks));
+
+    // after added to local stg , use sucess alert :
+    Swal.fire({
+        position: "top-center",
+        icon: "success",
+        title: "Your Task  added successfully",
+        showConfirmButton: true,
+        timer: 1500
+    });
     displayTasks();
 
 
@@ -37,9 +46,29 @@ taskForm.onsubmit = (event) => {
 
 
 const deleteTask = (index) => {
-    tasks.splice(index, 1);
-    localStorage.setItem('tasks', JSON.stringify(tasks));
-    displayTasks();
+    Swal.fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!"
+    }).then((result) => {
+        if (result.isConfirmed) {
+            Swal.fire({
+                title: "Deleted!",
+                text: "Your Task has been deleted.",
+                icon: "success"
+            });
+
+            tasks.splice(index, 1);
+            localStorage.setItem('tasks', JSON.stringify(tasks));
+            displayTasks();
+        }
+
+    });
+
 }
 
 
@@ -62,7 +91,7 @@ const displayTasks = () => {
         return `
                  <tr>
                      <td class="px-6 py-4 whitespace-nowrap">${task.title}</td>
-                     <td class="px-6 py-4 whitespace-nowrap">${task.description}</td>
+                     <td class="px-6 py-4 whitespace-nowrap">${task.dueDate}</td>
                      <td class="px-6 py-4 whitespace-nowrap">
                          <span class="px-2 py-1 text-xs font-medium rounded-full ${getPriorityClass(task.priority)}">
                              ${task.priority}
